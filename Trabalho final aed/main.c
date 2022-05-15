@@ -22,7 +22,7 @@ int riquezaTerreno(terreno t);
 int main(void){
 	terreno t = parametrosIniciais();
 	interpretador(t);
-	
+
 	return 0;
 }
 
@@ -39,14 +39,14 @@ int tesouro[l][c];
 
 /*for(int i=0; i<l ;i++){
         for(int j=0; j<c ;j++){
-                 sscanf(linha,"%s",&tesouroInput);  
-                    tesouro[i][j] = tesouroInput; 
+                 sscanf(linha,"%s",&tesouroInput);
+                    tesouro[i][j] = tesouroInput;
                 }
             } */
 
 int i, j, x, y, n, numeroaux;
     int matriz[l][c];
-    char stringaux[10], linha[100];
+    char stringaux[10], linha[1000]; // CUIDADO!
 
     for (x = 0; x < l; x++) {
       fgets(linha, 100, stdin);
@@ -68,33 +68,33 @@ int i, j, x, y, n, numeroaux;
           stringaux[j] = linha[i];
       }
     }
-terreno t = criaTerreno(l,c,tesouro);  
-return t; 
+terreno t = criaTerreno(l,c,tesouro);
+return t;
 }
 
 void interpretador(terreno t){
 
     char linha[SIZE];
-    
+
     while(1){   /*Repete até o utilizador usar COMANDO-SAIR*/
 
         fgets(linha,SIZE,stdin);
-    
+
         if(!strcmp("riqueza",linha)){
         printf("Riqueza enterrada: %d\n",riquezaTerreno(t));
             /* COMANDO-RIQUEZA*/
         }
         else if(!strcmp("terreno",linha)){
-            
+
             for(int i=0; i<linhasTerreno(t) ;i++){
                 for(int j=0; j<colunasTerreno(t) ;j++){
 
                     if(estadoTerreno(t,i,j)){
                         printf("*");
-                    } else  
-                        printf("-");     
+                    } else
+                        printf("-");
                 }
-             printf("\n") ;   
+             printf("\n") ;
                /* COMANDO-TERRENO*/
             }
         }
@@ -114,10 +114,7 @@ void interpretador(terreno t){
             /*COMANDO-SAIR*/
         }
         else{
-            printf("Comando invalido\n");    
+            printf("Comando invalido\n");
         }
     }
 }
-
-
-
