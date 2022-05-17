@@ -1,16 +1,21 @@
 #include <stdlib.h>
 #include <string.h>
+
 #include "terreno.h"
 #include "talhao.h"
-#include "tuplo.h"
+#include "dicOrdenado.h"
 
 #define CONSAASD 100
+#define ZERO 0
+#define UM 1
+#define NUMEQUIPAS 10
 
 struct _terreno {
     int colunas;
     int linhas;
     talhao ** talhoes;
-    tuplo equipas;
+    dicOrdenado equipas;
+   
 };
 
 terreno criaTerreno(int l , int c , int** tesouro) {
@@ -27,14 +32,25 @@ terreno criaTerreno(int l , int c , int** tesouro) {
        t->talhoes[i] = (talhao*)malloc(sizeof(talhao)*c);
     }
     
-    t->equipas = (tuplo) malloc (sizeof(tuplo));
-
+    t->equipas = criaDicOrdenado(NUMEQUIPAS,UM);
 
     for(i = 0; i < l ; i++)
         for(j = 0; j < c ; j++)
             t->talhoes[i][j] = criaTalhao(tesouro[i][j]);
+    
     return t;
 }
+void destroiTerreno(terreno t){
+    for(int i = 0; i < t->linhas ; i++)
+        for(int j = 0; j < t->colunas ; j++)
+            destroiTalhao(t->talhoes[i][j]);  
+            
+    free(t->talhoes);
+    destroiDicOrdEElems(t->equipas,destroiDicOrdenado);
+    free(t);
+    return;
+
+}   
 
 int riquezaTerreno(terreno t){
     

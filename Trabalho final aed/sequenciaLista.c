@@ -17,7 +17,7 @@ struct  _sequencia{
 
 /* Prototipos das funcoes associadas a uma sequencia */
 
-sequencia criaSequencia(int cap){
+sequencia criaSequencia(){
 	sequencia s = (sequencia) malloc(sizeof(struct _sequencia));
 	if ( s == NULL) return NULL;
 	s->cabeca = NULL;

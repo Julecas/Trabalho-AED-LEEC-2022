@@ -19,6 +19,14 @@ Pre-condicoes: tesouro >= 0
 ***********************************************/
 talhao criaTalhao(int tesouro);
 /***********************************************
+destroiTalhao - Liberta a memória ocupada pela instância da estrutura associada ao talhao.
+Parâmetros:
+	ta - talhao a destruir
+Retorno: void
+Pré-condições: t != NULL
+***********************************************/
+void destroiTalhao(talhao ta);
+/***********************************************
 riquezaTalhao - Consulta a riqueza de um dado talhao
 Parametros:
     ta - talhão dado

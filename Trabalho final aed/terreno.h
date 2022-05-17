@@ -21,6 +21,14 @@ Pre-condicoes: l > 0 e c > 0
 ***********************************************/
 terreno criaTerreno(int l ,int c,int **tesouro);
 /***********************************************
+destroiTerrreno - Liberta a memória ocupada pela instância da estrutura associada ao terreno.
+Parâmetros:
+	t - terreno a destruir
+Retorno: void
+Pré-condições: t != NULL
+***********************************************/
+void destroiTerreno(terreno t);
+/***********************************************
 riquezaTerreno - Consulta a riqueza do terreno.
 Parametros:
 	t - terreno a consultar

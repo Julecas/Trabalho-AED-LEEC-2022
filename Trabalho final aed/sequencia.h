@@ -9,11 +9,11 @@ typedef struct _sequencia * sequencia;
 /***********************************************
 criaSequencia - Criacao da instancia da estrutura associada a uma sequencia.
 Parametros:
-	cap - capacidade prevista da sequencia
+	
 Retorno: apontador para a  instancia criada
 Pre-condicoes:
 ***********************************************/
-sequencia criaSequencia(int cap);
+sequencia criaSequencia();
 
 /***********************************************
 destroiSequencia - Liberta a memoria ocupada pela instancia da estrutura associada a sequencia.

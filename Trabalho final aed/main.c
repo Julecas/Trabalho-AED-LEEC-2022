@@ -22,7 +22,7 @@ int riquezaTerreno(terreno t);
 int main(void){
 	terreno t = parametrosIniciais();
 	interpretador(t);
-
+	
 	return 0;
 }
 
@@ -30,7 +30,8 @@ int main(void){
 terreno parametrosIniciais(){
 
 int linha[SIZE], linha_input[TAMANHO_INPUT_TESOURO];
-int c,l,tesouroInput, i, j, x, y;
+int c,l,tesouroInput, i, j, x, y, n, numeroaux, matriz[l][c];
+char stringaux[10], linha[100];
 
 
 sscanf(linha,"%d %d",&l,&c);
@@ -39,22 +40,18 @@ int tesouro[l][c];
 
 /*for(int i=0; i<l ;i++){
         for(int j=0; j<c ;j++){
-                 sscanf(linha,"%s",&tesouroInput);
-                    tesouro[i][j] = tesouroInput;
+                 sscanf(linha,"%s",&tesouroInput);  
+                    tesouro[i][j] = tesouroInput; 
                 }
             } */
 
-int i, j, x, y, n, numeroaux;
-    int matriz[l][c];
-    char stringaux[10], linha[1000]; // CUIDADO!
-
     for (x = 0; x < l; x++) {
-      fgets(linha, 100, stdin);
+      fgets(linha_input, 100, stdin);
+      linha_input[strlen(linha_input) - 1] = '\0';
       for (i = 0, j = 0, y = 0, n = 0; n < c; i++, j++) {
           if (linha[i] == ' ' || linha[i] == '\0') {
               stringaux[j] = '\0';
               numeroaux = atoi(stringaux);
-              printf("Processou %s, converteu para %d\n", stringaux, numeroaux);
               matriz[x][y] = numeroaux;
               i++;
               y++;
@@ -64,37 +61,36 @@ int i, j, x, y, n, numeroaux;
                   break;
               }
           }
-          printf(".");
           stringaux[j] = linha[i];
       }
     }
-terreno t = criaTerreno(l,c,tesouro);
-return t;
+terreno t = criaTerreno(l,c,tesouro);  
+return t; 
 }
 
 void interpretador(terreno t){
 
     char linha[SIZE];
-
+    
     while(1){   /*Repete até o utilizador usar COMANDO-SAIR*/
 
         fgets(linha,SIZE,stdin);
-
+    
         if(!strcmp("riqueza",linha)){
         printf("Riqueza enterrada: %d\n",riquezaTerreno(t));
             /* COMANDO-RIQUEZA*/
         }
         else if(!strcmp("terreno",linha)){
-
+            
             for(int i=0; i<linhasTerreno(t) ;i++){
                 for(int j=0; j<colunasTerreno(t) ;j++){
 
                     if(estadoTerreno(t,i,j)){
                         printf("*");
-                    } else
-                        printf("-");
+                    } else  
+                        printf("-");     
                 }
-             printf("\n") ;
+             printf("\n") ;   
                /* COMANDO-TERRENO*/
             }
         }
@@ -114,7 +110,10 @@ void interpretador(terreno t){
             /*COMANDO-SAIR*/
         }
         else{
-            printf("Comando invalido\n");
+            printf("Comando invalido\n");    
         }
     }
 }
+
+
+
