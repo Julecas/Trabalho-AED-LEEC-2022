@@ -1,8 +1,11 @@
 /*
  * dicOrdenado.h
  */
+
 #ifndef _H_DICORDENADO
 #define _H_DICORDENADO
+
+#include "iterador.h"
 /* Tipo de dados: dicionario ordenado ---> os elementos não podem ser repetidos com base num identificador (chave) dos elementos */
 typedef struct _dicOrdenado * dicOrdenado;
 

@@ -19,7 +19,7 @@ Parametros:
 Retorno: apontador para a instância criada
 Pre-condicoes: l > 0 e c > 0
 ***********************************************/
-terreno criaTerreno(int l ,int c,int **tesouro);
+terreno criaTerreno(int l ,int c,int tesouro[l][c]);
 /***********************************************
 destroiTerrreno - Liberta a memória ocupada pela instância da estrutura associada ao terreno.
 Parâmetros:
@@ -64,6 +64,42 @@ Retorno: (int) número de colunas
 Pre-condicoes:
 ***********************************************/
 int colunasTerreno(terreno t);
+/***********************************************
+adicionarEquipaDicOrdenadoPorNumTerreno - Adiciona uma nova equipa lida do ficheiro teams.txt ao dicionario de equipas.
+Parametros:
+	nome_equipa - nome da equipa a adicionar
+    t = terreno a consultar
+Retorno: void
+Pre-condicoes: 
+***********************************************/
+void adicionarEquipaDicOrdenadoPorNumTerreno(char *nome_equipa,int nr_equipa,terreno t);
+/***********************************************
+adicionaArqueologoEquipaTerreno - adiciona um arqueologo a uma dada equipa.
+Parametros:
+	nomeArqueologo - nome do arqueologo a adicionar
+    n_equipa = número da equipa
+	t = terreno a consultar
+Retorno: void
+Pre-condicoes: 
+***********************************************/
+void adicionaArqueologoEquipaTerreno(char *nomeArqueologo,int n_equipa,terreno t);
+/***********************************************
+adicionaAoOutroDicionario - adiciona as equipas escolhidas pelo utilizador ao dicionario ordenado por nomes.
+Parametros:
+    nEquipa = número da equipa
+	t = terreno a consultar
+Retorno: void
+Pre-condicoes: 
+***********************************************/
+void adicionaAoOutroDicionarioTerreno(int nEquipa,terreno t);
+/***********************************************
+imprimeEquipasTerreno - imprime todas as equipas em jogo.
+Parametros:
+	t = terreno a consultar
+Retorno: (char*) nome da equipa
+Pre-condicoes: 
+**********************************************/
+void imprimeEquipasTerreno(terreno t);
 
 
 #endif /* TERRENO_H_ */

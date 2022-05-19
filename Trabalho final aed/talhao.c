@@ -15,8 +15,11 @@ ta->tesouro = tesouro;
 ta->nEscavacoes = 0;
 return ta;     
 }
+void destroiTalhao(talhao ta){
+    free(ta);    
+}
 
-int riquezaTalhao(talhao ta){
+int riquezaTalhao(talhao ta){  
     return ta->tesouro;
 }
 
