@@ -32,3 +32,10 @@ void apagaArqueologo(arqueologo a){
 void apagaArqueologoGen(void* a){
     apagaArqueologo((arqueologo)a);
 }
+char* nomeArqueologo(arqueologo a){
+    return a->nome;
+}
+int pontosArqueologos(arqueologo a){
+    return a->pontos;    
+}
+

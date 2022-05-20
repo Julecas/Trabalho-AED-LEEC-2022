@@ -107,10 +107,11 @@ void adicionaAoOutroDicionarioTerreno(int nEquipa,terreno t){
 void imprimeEquipasTerreno(terreno t){
     
     iterador it = iteradorDicOrdenado(t->equipasPorNom);
+    equipa e;
 	
     while(temSeguinteIterador(it))
 	{
-		equipa e =	seguinteIterador(it);
+		e =	seguinteIterador(it);
         printf("%s\n",nomeEquipa(e));
 	}
 	

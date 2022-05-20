@@ -53,6 +53,16 @@ Retorno: (char*) nome da equipa
 Pré-condições: e != NULL
 ***********************************************/
 char* nomeEquipa(equipa e);
+/***********************************************
+procuraEstrela - procura a estrela de uma dada equipa.
+Parâmetros:
+	e - equipa 
+Retorno: (char*) nome da estrela
+Pré-condições: e != NULL
+***********************************************/
+char* procuraEstrela(equipa e){
+    
+}
 
 
 #endif /* EQUIPA_H_ */

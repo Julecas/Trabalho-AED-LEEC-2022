@@ -34,6 +34,22 @@ Retorno: void
 Pré-condições: a != NULL
 ***********************************************/
 void apagaArqueologoGen(void* a);
+/***********************************************
+NomeArqueologo - retorna o nome do arqueologo dado.
+Parâmetros:
+	a - arqueologo 
+Retorno: (char*) nome do arqueologo
+Pré-condições: a != NULL
+***********************************************/
+char* nomeArqueologo(arqueologo a);
+/***********************************************
+pontosArqueologos - retorna os pontos do arqueologo dado.
+Parâmetros:
+	a - arqueologo 
+Retorno: (int) pontos do arqueologo
+Pré-condições: a != NULL
+***********************************************/
+int pontosArqueologos(arqueologo a);
 
 
 
