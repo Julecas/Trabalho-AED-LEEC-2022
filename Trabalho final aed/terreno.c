@@ -99,7 +99,7 @@ void adicionaArqueologoEquipaTerreno(char *nomeArqueologo,int n_equipa,terreno t
     adicionaArqueologoEquipa(criaArqueologo(nomeArqueologo),(equipa)elementoDicOrdenado(t->equipasPorNum,&n_equipa));
 }
 
-void adicionaAoOutroDicionarioTerreno(int nEquipa,terreno t){
+void adicionaAoOutroDicionarioTerreno(int nEquipa,terreno t) {
     
     adicionaElemDicOrdenado(t->equipasPorNom,nomeEquipa(elementoDicOrdenado(t->equipasPorNum,&nEquipa)),elementoDicOrdenado(t->equipasPorNum,&nEquipa));
     // 
@@ -119,4 +119,50 @@ void imprimeEquipasTerreno(terreno t){
 	return; 
 }
 
-/* FAZER ITERADOR DE ARQUEOLOGOS PARA PROCURAR A ESTRELAR*/
+int tamanhoDicOrdenadoPorNumTerreno (terreno t) {
+    return tamanhoDicOrdenado(t->equipasPorNum);
+}
+
+int existeEquipaNoOutroDicTerreno(terreno t, int nEquipa) {
+    return existeElemDicOrdenado(t->equipasPorNom, nomeEquipa(elementoDicOrdenado(t->equipasPorNum,&nEquipa)));
+}
+
+int existeEquipaEmJogoNoTerreno(terreno t, char *nome_equipa) {
+    if (existeElemDicOrdenado(t->equipasPorNom, nome_equipa)) {
+        if (!estaExpulsaEquipa((equipa)elementoDicOrdenado(t->equipasPorNom,nome_equipa))) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int existeAlgumaEquipaEmJogoNoTerreno(terreno t) {
+    iterador it = iteradorDicOrdenado(t->equipasPorNom);
+    equipa e;
+	
+    while(temSeguinteIterador(it))
+	{
+		e =	seguinteIterador(it);
+
+        if (!estaExpulsaEquipa(e)) { // Retorna 1 caso encontre uma equipa ainda em jogo. Não precisa de verificar mais pois basta uma para verificar a condição.
+            destroiIterador(it);
+            return 1;
+        }
+	}
+
+    destroiIterador(it);
+	return 0;
+}
+
+void escavarTerreno(terreno t, char* nome_equipa, int saltoL,int saltoC){
+    equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa); 
+    escavarTerrenoEquipa(e, saltoL,saltoC, t->linhas, t->colunas);
+
+}
+/*equipa procuraEquipa(terreno t,char* nome_equipa){
+    equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa);
+    return e;
+}*/
+char* procuraEstrelaTerreno(terreno t,char* nome_equipa){
+   return procuraEstrela((equipa)elementoDicOrdenado(t->equipasPorNom,nome_equipa));
+}

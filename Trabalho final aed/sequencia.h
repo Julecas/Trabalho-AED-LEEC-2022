@@ -1,6 +1,8 @@
 #ifndef _H_SEQUENCIA
 #define _H_SEQUENCIA
 
+#include "iterador.h"
+
 /* Tipo de dados: sequencia ---> s1, s2, s3 ....*/
 typedef struct _sequencia * sequencia;
 
@@ -82,6 +84,14 @@ Retorno: retorna o elemento
 Pre-condicoes: s != NULL && i>0 && i<= tamanhoSequencia(s)
 ***********************************************/
 void * removePosSequencia(sequencia s, int i);
+/***********************************************
+iteradorSequencia- itera sobre os elementos da sequencia.
+Parametros:
+	s - sequencia
+Retorno: apontador para a instancia criada
+Pre-condicoes: s != NULL 
+***********************************************/
+iterador iteradorSequencia(sequencia s);
 
 
 #endif	/*_H_SEQUENCIA*/

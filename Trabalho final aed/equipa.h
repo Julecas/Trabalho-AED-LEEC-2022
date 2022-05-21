@@ -60,9 +60,27 @@ Parâmetros:
 Retorno: (char*) nome da estrela
 Pré-condições: e != NULL
 ***********************************************/
-char* procuraEstrela(equipa e){
-    
-}
+char* procuraEstrela(equipa e);
+/***********************************************
+estaEmJogoEquipa - indica se uma equipa ainda está em jogo.
+Parâmetros:
+	e - equipa 
+Retorno: (int) Valor de expulsão da equipa, 1 se a equipa estiver expulsa, 0 caso contrario
+Pré-condições: e != NULL
+***********************************************/
+int estaExpulsaEquipa(equipa e);
+/***********************************************
+escavarTerrenoEquipa - seleciona um arqueologo para fazer uma escavacao, indicando se o arqueologo que fez o salto foi desclassificado devido a esse salto.
+Parâmetros:
+	e - equipa 
+	saltoL - salto na coordenada y do arqueologo
+	saltoC - salto na coordenada x do arqueologo 
+	linhas - linhas do terreno 
+	colunas - colunas do terreno 
+Retorno: (int) Valor de expulsão da equipa, 1 se o arqueologo foi expulso, 0 caso contrario
+Pré-condições: e != NULL
+***********************************************/
+int escavarTerrenoEquipa(equipa e,int saltoL,int saltoC,int linhas,int colunas);
 
 
 #endif /* EQUIPA_H_ */

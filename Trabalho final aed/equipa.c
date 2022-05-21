@@ -13,14 +13,23 @@
 /* TAD sequencia em lista */
 struct _equipa {
     int pontosTotais;
+    int expulsao;
     char nome[SIZE];
     sequencia arqueologos;
-};
+    int arqAEscavar;
+    //arqueologo proximoAEscavar
+}; 
 
 equipa criaEquipa(char nome[SIZE]){
    equipa e = (equipa) malloc(sizeof(struct _equipa));
-	if (e == NULL) return NULL;
+	    if (e == NULL) return NULL;
     e->pontosTotais=0;
+    e->expulsao=0;
+    
+    //e->proximoAEscavar = (arqueologo) malloc(sizeof(arqueologo)); 
+    //e->proximoAEscavar = elementoPosSequencia(e->arqueologos, 1);
+    
+    e->arqAEscavar=1;
     strcpy(e->nome,nome);
     e->arqueologos = criaSequencia();  
 
@@ -32,6 +41,7 @@ equipa criaEquipa(char nome[SIZE]){
 }
 void destroiEquipa(equipa e){
   destroiSeqElems(e->arqueologos,apagaArqueologoGen);
+  //free(e->proximoAEscavar);
   free(e);
 }
 
@@ -45,20 +55,67 @@ char* nomeEquipa(equipa e){
   return e->nome;
 }
 char* procuraEstrela(equipa e){
-    char chave[SIZE];
-    
+   
     iterador it = iteradorSequencia(e->arqueologos);
     arqueologo a;
+    arqueologo estrela;
 
-    while(temSeguinteIterador(it))
-	{
-	  a =	seguinteIterador(it);
-     // if()
+    while (temSeguinteIterador(it)) {
+      estrela = seguinteIterador(it); // Guardar o primeiro arqueólogo da equipa na variável de estrela.
+      if (!estaExpulsoArqueologo(estrela)) {
+        break;
+      }
+    }
     
-    printf("%s\n",nomeEquipa(e));
-	}
+    while(temSeguinteIterador(it)){
 	
+	  a =	seguinteIterador(it);
+    
+    if(!estaExpulsoArqueologo(a)){
+      
+      if(pontosArqueologo(a) > pontosArqueologo(estrela)){
+       estrela = a; 
+       
+      
+      }
+      if(pontosArqueologo(a) == pontosArqueologo(estrela)){
+        if(numPenalizacoesArqueologo(a) < numPenalizacoesArqueologo(estrela)) {
+          	estrela = a;   
+        }
+        if(numPenalizacoesArqueologo(a) == numPenalizacoesArqueologo(estrela)) {
+          if(strcmp(nomeArqueologo(a),nomeArqueologo(estrela)) < 0){ // usar o compChaves() do chaves.c depois
+            estrela = a;  
+          }
+           
+        }
+      }
+    }
+	}
+  
   destroiIterador(it);
-	return; 
+  return nomeArqueologo(estrela);
+
+}
+
+int estaExpulsaEquipa(equipa e) {
+  return e->expulsao;
+}
+int escavarTerrenoEquipa(equipa e,int saltoL,int saltoC,int linhas,int colunas){
+  
+  while (1) {
+    if(e->arqAEscavar > tamanhoSequencia(e->arqueologos)){
+      e->arqAEscavar = 1;
+    }
+
+    arqueologo a = elementoPosSequencia(e->arqueologos,e->arqAEscavar);
+    
+    if (!estaExpulsoArqueologo(a)){
+      e->arqAEscavar++;
+      return saltoArqueologo(a,saltoL,saltoC,linhas,colunas);
+    }
+    else {
+      e->arqAEscavar++;
+    }
+  }
 
 }

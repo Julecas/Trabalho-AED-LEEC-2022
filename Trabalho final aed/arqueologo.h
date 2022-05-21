@@ -49,9 +49,33 @@ Parâmetros:
 Retorno: (int) pontos do arqueologo
 Pré-condições: a != NULL
 ***********************************************/
-int pontosArqueologos(arqueologo a);
+int pontosArqueologo(arqueologo a);
+/***********************************************
+pontosArqueologos - retorna se o arqueologo esta expulso.
+Parâmetros:
+	a - arqueologo 
+Retorno: (int) 1 se estiver expulso
+Pré-condições: a != NULL
+***********************************************/
+int estaExpulsoArqueologo(arqueologo a);
+/***********************************************
+numPenalizacoesArqueologo - indica o numero de penalizações de um dado arqueologo.
+Parâmetros:
+	a - arqueologo 
 
-
-
+Retorno: (int) número de penalizações de um dado arqueologo
+Pré-condições:
+***********************************************/
+int numPenalizacoesArqueologo(arqueologo a);
+/***********************************************
+saltoArqueologo - efetua um salto de um dado arqueologo, retornando se foi desclassificado ou não.
+Parâmetros:
+	a - arqueologo 
+	saltoL - salto na coordenada y
+	saltoC - salto na coordenada x
+Retorno: (int) 1 se foi expulso, 0 em contrário
+Pré-condições: arqueologo (a) não está expulso
+***********************************************/
+int saltoArqueologo(arqueologo a, int saltoL, int saltoC, int l, int c);
 
 #endif /* ARQUEOLOGO_H_ */

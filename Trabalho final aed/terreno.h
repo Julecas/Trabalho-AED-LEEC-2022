@@ -100,6 +100,72 @@ Retorno: (char*) nome da equipa
 Pre-condicoes: 
 **********************************************/
 void imprimeEquipasTerreno(terreno t);
+/***********************************************
+tamanhoDicOrdenadoPorNumTerreno - Consulta o numero de elementos no dicionario ordenado por numeros, ou seja, o numero de equipas do ficheiro.
+Parametros:
+	t - terreno a consultar
 
+Retorno: (int) numero de elementos no dicionario (numero de equipas do ficheiro)
+Pre-condicoes:
+***********************************************/
+int tamanhoDicOrdenadoPorNumTerreno (terreno t);
+/***********************************************
+existeEquipaNoOutroDicTerreno - Verifica se existe uma dada equipa no dicionario ordenado por nome, independentemente de estar desclassificada ou nao.
+Parametros:
+	t - terreno a consultar
+	nEquipa = número da equipa
+
+Retorno: (int) 1 se a equipa existir, 0 caso contrario
+Pre-condicoes:
+***********************************************/
+int existeEquipaNoOutroDicTerreno(terreno t, int nEquipa);
+/***********************************************
+existeEquipaEmJogoNoTerreno - Verifica se a equipa existe e esta em jogo.
+Parametros:
+	t - terreno a consultar
+	nome_equipa - nome da equipa a consultar
+
+Retorno: (int) 1 se a equipa estiver em jogo, 0 caso contrario
+Pre-condicoes:
+***********************************************/
+int existeEquipaEmJogoNoTerreno(terreno t, char *nome_equipa);
+/***********************************************
+existeAlgumaEquipaEmJogoNoTerreno - Consulta se existe alguma equipa ainda em jogo.
+Parametros:
+	t - terreno a consultar
+
+Retorno: (int) 1 se existir alguma equipa em jogo, 0 caso contrario
+Pre-condicoes:
+***********************************************/
+int existeAlgumaEquipaEmJogoNoTerreno(terreno t);
+/***********************************************
+escavarTerreno - escava um talhão com base nas coordenasdas (saltoL+coord_x) (saltoC+coord_y) , essa escavação é associada a uma dada equipa.
+Parametros:
+	t - terreno a consultar
+	nome_equipa - nome da equipa a escavar
+	saltoL - salto na coordenada x
+	saltoC - salto na coordenada y
+Retorno: (void) 
+Pre-condicoes:
+***********************************************/
+void escavarTerreno(terreno t, char* nome_equipa, int saltoL, int saltoC);
+/***********************************************
+procuraEquipa - procura uma equipa no dicionario em que a chave é o nome das equipas
+	t - terreno a consultar
+	nome_equipa - nome da equipa a consultar
+	
+Retorno: (equipa) equipa a consultar
+Pre-condicoes:
+***********************************************/
+//equipa procuraEquipa(terreno t,char* nome_equipa);
+/***********************************************
+procuraEstrelaTerreno - procura a estrela de uma dada equipa.
+Parâmetros:
+	t - terreno 
+	nome_equipa - nome da equipa a consultar estrela
+Retorno: (char*) nome da estrela
+Pré-condições: t != NULL
+***********************************************/
+char* procuraEstrelaTerreno(terreno t,char* nome_equipa);
 
 #endif /* TERRENO_H_ */
