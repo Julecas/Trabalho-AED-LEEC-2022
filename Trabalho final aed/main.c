@@ -26,7 +26,9 @@ int main(void){
 	terreno t = parametrosIniciais();
     lerEquipas(t);
 	interpretador(t);
+    printf("Saiu do interpretador!\n");
 	destroiTerreno(t);
+    printf("Destruiu terreno!\n");
 	return 0;
 }
 
@@ -118,7 +120,7 @@ void interpretador(terreno t){
     char primeiro_comando[10], string[100], nome_equipa[100], nome_arqueologo[100];
     
     while(1){   /*Repete até o utilizador usar COMANDO-SAIR*/
-        printf("Introduza o comando:\n");
+        //printf("Introduza o comando:\n");
         fgets(string, 100, stdin);
         string[strlen(string) - 1] = '\0';
 
@@ -148,7 +150,7 @@ void interpretador(terreno t){
                 /* COMANDO-TERRENO: não precisa de nenhum argumento extra*/
         }
         else if(!strcmp("estrela",primeiro_comando)){
-            printf("\nEXECUTAR COMANDO ESTRELA\n");
+            //printf("\nEXECUTAR COMANDO ESTRELA\n");
             /* COMANDO-ESTRELA: o argumento é o nome da equipa*/
             sscanf(string, "%s %[^\n]", primeiro_comando, nome_equipa);
             //printf("\nEstrela de %s: (nome)\n", nome_equipa);
@@ -177,7 +179,7 @@ void interpretador(terreno t){
                     *****/
 
 
-                    if (existeEquipaEmJogoNoTerreno(t, nome_equipa)) { // Se 
+                    if (!existeEquipaEmJogoNoTerreno(t, nome_equipa)) { // Se 
                         printf("%s foi expulsa\n", nome_equipa);
                     }
                 }
@@ -190,7 +192,6 @@ void interpretador(terreno t){
             }
         }
         else if(!strcmp("reforco",primeiro_comando)){
-            printf("\nEXECUTAR COMANDO REFORCO\n");
             /*COMANDO-REFORÇO: inicialmente, apenas se escreve "reforco" na primeira linha, escrevendo individualmente cada argumento depois*/
             printf("Introduza a equipa: ");
             fgets(nome_equipa, 100, stdin);
@@ -204,7 +205,6 @@ void interpretador(terreno t){
             printf("Introduzido reforço com nome %s na equipa %s\n", nome_arqueologo, nome_equipa);
         }
         else if(!strcmp("equipa",primeiro_comando)){ // !!! o programa crasha se colocares um valor abaixo de 1, não sei se isso é preocupante ou não 
-            //printf("\nEXECUTAR COMANDO EQUIPA\n");
             /*COMANDO-EQUIPA: o argumento é um inteiro com o número da equipa*/
             sscanf(string, "%s %d", primeiro_comando, &num_equipa);
             //printf("\nAdicionada equipa %d\n", num_equipa);
@@ -222,8 +222,6 @@ void interpretador(terreno t){
             }
         }
         else if(!strcmp("sair",primeiro_comando)){
-            printf("\nEXECUTAR SAIDA\n");
-            /*COMANDO-SAIR*/
             if (existeAlgumaEquipaEmJogoNoTerreno(t)) {
                 if (riquezaTerreno(t)) { 
                     printf("Ainda havia tesouros por descobrir...\n");
@@ -235,9 +233,10 @@ void interpretador(terreno t){
             else {
                 printf("Todas as equipas foram expulsas.\n");
             }
+            return;
         }
-        else if(!strcmp("equipas",primeiro_comando)){
-            imprimeEquipasTerreno(t);
+        else if(!strcmp("equipas",primeiro_comando)){ // TIRAR
+            imprimeEquipasTerreno(t); 
         }    
         else{
             printf("Comando invalido\n");

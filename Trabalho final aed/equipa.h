@@ -39,8 +39,8 @@ void destroiEquipaGen(void* e);
 /***********************************************
 adicionaArqueologoEquipa - adiciona um arqueologo á equipa dada.
 Parâmetros:
-	a - equipa para adicionar
-	e - arquiologo a adicionar
+	e - equipa para adicionar
+	a - arquiologo a adicionar
 Retorno: void
 Pré-condições: e != NULL, a != NULL
 ***********************************************/
@@ -81,6 +81,30 @@ Retorno: (int) Valor de expulsão da equipa, 1 se o arqueologo foi expulso, 0 ca
 Pré-condições: e != NULL
 ***********************************************/
 int escavarTerrenoEquipa(equipa e,int saltoL,int saltoC,int linhas,int colunas);
-
+/***********************************************
+posColunaEquipa - retorna a posicao de coluna do ultimo arqueologo que escavou
+Parâmetros:
+	e - equipa 
+Retorno: (int) Valor de posição de coluna
+Pré-condições: e != NULL
+***********************************************/
+int posColunaEquipa (equipa e);
+/***********************************************
+posLinhaEquipa - retorna a posicao de linha do ultimo arqueologo que escavou
+Parâmetros:
+	e - equipa 
+Retorno: (int) Valor de posição de linha
+Pré-condições: e != NULL
+***********************************************/
+int posLinhaEquipa (equipa e);
+/***********************************************
+darPontosArqueologoEquipa - soma os pontos dado pela escavação de um talhao ao arqueologo que o escavou, através da sua equipa.
+Parâmetros:
+	e - equipa para adicionar
+	pontos - número de pontos
+Retorno: void
+Pré-condições: e != NULL
+***********************************************/
+void darPontosArqueologoEquipa(equipa e, int pontos);
 
 #endif /* EQUIPA_H_ */

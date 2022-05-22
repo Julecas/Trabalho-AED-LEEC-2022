@@ -47,14 +47,27 @@ int estaExpulsoArqueologo(arqueologo a) {
 int numPenalizacoesArqueologo(arqueologo a) {
     return a->nPenalizacoes;
 }
+int posColunaArqueologo(arqueologo a) {
+    return a->i;
+}
+int posLinhaArqueologo(arqueologo a) {
+    return a->j;
+}
 int saltoArqueologo(arqueologo a, int saltoL, int saltoC, int linhas, int colunas) {
-        a->i += saltoL;
-        a->j += saltoC;
+        a->i += saltoC;
+        a->j += saltoL;
 
         if (a->i < 0 || a->j < 0 || a->i >= colunas || a->j >= linhas) {
             a->expulsao = 1;
             return 1;
         }
     return 0;
+}
+void darPontosArqueologo (arqueologo a, int pontos) {
+    a->pontos += pontos;
+    
+    if (pontos < 0) {
+        a->nPenalizacoes++;
+    }
 }
 

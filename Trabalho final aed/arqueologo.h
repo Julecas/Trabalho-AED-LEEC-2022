@@ -68,6 +68,22 @@ Pré-condições:
 ***********************************************/
 int numPenalizacoesArqueologo(arqueologo a);
 /***********************************************
+posColunaArqueologo - consulta em que coluna o arqueologo esta.
+Parâmetros:
+	a - arqueologo 
+Retorno: (int) coluna em que o arqueologo esta situado
+Pré-condições: a != NULL
+***********************************************/
+int posColunaArqueologo(arqueologo a);
+/***********************************************
+posLinhaArqueologo - consulta em que linha o arqueologo esta.
+Parâmetros:
+	a - arqueologo 
+Retorno: (int) linha em que o arqueologo esta situado
+Pré-condições: a != NULL
+***********************************************/
+int posLinhaArqueologo(arqueologo a);
+/***********************************************
 saltoArqueologo - efetua um salto de um dado arqueologo, retornando se foi desclassificado ou não.
 Parâmetros:
 	a - arqueologo 
@@ -77,5 +93,14 @@ Retorno: (int) 1 se foi expulso, 0 em contrário
 Pré-condições: arqueologo (a) não está expulso
 ***********************************************/
 int saltoArqueologo(arqueologo a, int saltoL, int saltoC, int l, int c);
+/***********************************************
+darPontosArqueologo - soma os pontos dado pela escavação de um talhao ao arqueologo que o escavou.
+Parâmetros:
+	a - arqueologo
+	pontos - número de pontos
+Retorno: void
+Pré-condições: a != NULL
+***********************************************/
+void darPontosArqueologo(arqueologo a, int pontos);
 
 #endif /* ARQUEOLOGO_H_ */

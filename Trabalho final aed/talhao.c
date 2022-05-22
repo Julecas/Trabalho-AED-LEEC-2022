@@ -1,8 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "talhao.h"
 
-#define CONS 100
+#define MULT_PENALIZACAO -10
 
 struct _talhao {
     int tesouro;
@@ -27,4 +28,26 @@ int estadoTalhao(talhao ta){
     if(ta->tesouro == 0)
         return 0;
     return 1;     
+}
+
+int escavarTalhao(talhao ta) {
+    //printf("A escavar talhão com %d de tesouro!\n",ta->tesouro);
+    int pontosADar;
+    if (ta->tesouro) {
+        pontosADar = ta->tesouro;
+        ta->tesouro = 0;
+        ta->nEscavacoes++;
+        return pontosADar;
+    }
+    else {
+        if (!(ta->nEscavacoes)) {
+            ta->nEscavacoes++;
+            return 0;
+        }
+        else {
+            pontosADar = ta->nEscavacoes * MULT_PENALIZACAO;
+            ta->nEscavacoes++;
+            return pontosADar;
+        }
+    }
 }

@@ -44,5 +44,14 @@ Retorno: (int) 1 se o talhão contiver tesouro, 0 caso contrario
 Pre-condicoes: 
 ***********************************************/
 int estadoTalhao(talhao ta);
+/***********************************************
+estadoTalhao - Escava um dado talhão, retornando o valor de pontos que terão de ser dados ao arqueologo.
+Parametros:
+    ta - talhão dado
+    
+Retorno: (int) valor de pontos
+Pre-condicoes: 
+***********************************************/
+int escavarTalhao(talhao ta);
 
 #endif /* TALHAO_H_ */

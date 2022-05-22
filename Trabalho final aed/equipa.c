@@ -117,5 +117,13 @@ int escavarTerrenoEquipa(equipa e,int saltoL,int saltoC,int linhas,int colunas){
       e->arqAEscavar++;
     }
   }
-
+}
+int posColunaEquipa (equipa e) {
+  return posColunaArqueologo((arqueologo)elementoPosSequencia(e->arqueologos,e->arqAEscavar - 1)); // É -1 porque queremos ver a posição do último arqueólogo que se mexeu.
+}
+int posLinhaEquipa (equipa e) {
+  return posLinhaArqueologo((arqueologo)elementoPosSequencia(e->arqueologos,e->arqAEscavar - 1));
+}
+void darPontosArqueologoEquipa (equipa e, int pontos) {
+  darPontosArqueologo((arqueologo)elementoPosSequencia(e->arqueologos,e->arqAEscavar - 1), pontos);
 }

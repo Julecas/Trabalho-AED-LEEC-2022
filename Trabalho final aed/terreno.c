@@ -156,8 +156,14 @@ int existeAlgumaEquipaEmJogoNoTerreno(terreno t) {
 
 void escavarTerreno(terreno t, char* nome_equipa, int saltoL,int saltoC){
     equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa); 
-    escavarTerrenoEquipa(e, saltoL,saltoC, t->linhas, t->colunas);
+    int posC, posL;
 
+    if(!escavarTerrenoEquipa(e, saltoL,saltoC, t->linhas, t->colunas)) {
+        //printf("Saltou!\n");
+        posC = posColunaEquipa(e);
+        posL = posLinhaEquipa(e);
+        darPontosArqueologoEquipa(e, escavarTalhao(t->talhoes[posL][posC]));
+    }
 }
 /*equipa procuraEquipa(terreno t,char* nome_equipa){
     equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa);
