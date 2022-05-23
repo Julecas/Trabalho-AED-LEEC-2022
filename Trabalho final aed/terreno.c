@@ -177,7 +177,7 @@ char* procuraEstrelaTerreno(terreno t,char* nome_equipa){
    return procuraEstrela((equipa)elementoDicOrdenado(t->equipasPorNom,nome_equipa));
 }
 
-int quantasEquipaEmJogoNoTerreno(terreno t){
+int quantasEquipasEmJogoNoTerreno(terreno t){
     iterador it = iteradorDicOrdenado(t->equipasPorNom);
     equipa e;
     int count=0;
@@ -203,5 +203,45 @@ void adicionarReforcoEquipaTerreno(terreno t,char* nome_equipa, char* nome_arque
     adicionaArqueologoEquipa(criaArqueologo(nome_arqueologo), (equipa)elementoDicOrdenado(t->equipasPorNom,nome_equipa));
 }
 int quantasEquipasNoTerreno(terreno t){
-    return tamanhoDicOrdenado(t->equipasPorNom);   
+    return tamanhoDicOrdenado(t->equipasPorNom);
+}
+
+void * obterERemoverDoDicMelhorEquipaNoTerreno(terreno t) {
+    iterador it = iteradorDicOrdenado(t->equipasPorNom);
+    equipa e, melhor_equipa;
+
+    while (temSeguinteIterador(it)) {
+      melhor_equipa = seguinteIterador(it); // Guardar a primeira equipa não-expulsa na variável de melhor_equipa.
+      if (!estaExpulsaEquipa(melhor_equipa)) {
+        break;
+      }
+    }
+	
+    while(temSeguinteIterador(it))
+	{
+		e =	seguinteIterador(it);
+
+        if (!estaExpulsaEquipa(e)) {
+            if (totalPontosEquipa(e) > totalPontosEquipa(melhor_equipa)) {
+                melhor_equipa = e;
+            }
+
+            if (totalPontosEquipa(e) == totalPontosEquipa(melhor_equipa)) {
+                if (quantosArqueologosExpulsosNaEquipa(e) < quantosArqueologosExpulsosNaEquipa(melhor_equipa)) {
+                    melhor_equipa = e;
+                }
+                if (quantosArqueologosExpulsosNaEquipa(e) == quantosArqueologosExpulsosNaEquipa(melhor_equipa)) {
+                    if(strcmp(nomeEquipa(e),nomeEquipa(melhor_equipa)) < 0) { // usar o compChaves() do chaves.c depois
+                        melhor_equipa = e;
+                    }
+                }
+            }
+        }
+	}
+
+    destroiIterador(it);
+
+    //printf("%s: %d pts; %d descl.; %d com lic.\n", nomeEquipa(melhor_equipa), pontosTotaisEquipa(melhor_equipa), tamanhoEquipa(melhor_equipa) - quantosArqueologosEmJogoNaEquipa(melhor_equipa), quantosArqueologosEmJogoNaEquipa(melhor_equipa));
+
+	return removeElemDicOrdenado(t->equipasPorNom, nomeEquipa(melhor_equipa));
 }

@@ -150,3 +150,35 @@ int existeArqueologoNaEquipa(equipa e, char* nome_arqueologo) {
     }
     return 0;
 }
+int totalPontosEquipa(equipa e) {
+  iterador it = iteradorSequencia(e->arqueologos);
+  arqueologo a;
+  int totalPontos = 0;
+
+  while (temSeguinteIterador(it)) {
+    a = seguinteIterador(it); 
+    if (!estaExpulsoArqueologo(a)) {
+        totalPontos += pontosArqueologo(a);
+    }
+  }
+
+  return totalPontos;
+}
+int tamanhoEquipa (equipa e) {
+  return tamanhoSequencia(e->arqueologos);
+}
+int quantosArqueologosExpulsosNaEquipa (equipa e) {
+  iterador it = iteradorSequencia(e->arqueologos);
+  arqueologo a;
+  int count = 0;
+
+  while (temSeguinteIterador(it)) {
+    a = seguinteIterador(it); 
+
+    if (estaExpulsoArqueologo(a)) {
+        count++;
+    }
+  }
+
+  return count;
+}

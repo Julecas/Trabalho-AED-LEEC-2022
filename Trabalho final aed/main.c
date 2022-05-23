@@ -207,7 +207,7 @@ void interpretador(terreno t){
                     adicionarReforcoEquipaTerreno(t, nome_equipa, nome_arqueologo);
                 }
                 else {
-                    print("Arqueologo invalido\n");
+                    printf("Arqueologo invalido\n");
                 }
             }
             else {
@@ -245,10 +245,15 @@ void interpretador(terreno t){
                 }
                     printf("classificacao\n");       
                     
-                    for(int i=0;i <quantasEquipasNoTerreno(t);i++) {
-                        if (equipaEstaEmJogoTerreno()) {
+                    int num = quantasEquipasEmJogoNoTerreno(t);
+
+                    for(int i=0;i<num;i++) {
+                        //printf("i = %d\n", i);
+                        equipa e = obterERemoverDoDicMelhorEquipaNoTerreno(t);
+                        printf("%s: %d pts; %d descl.; %d com lic.\n", nomeEquipa(e), totalPontosEquipa(e), quantosArqueologosExpulsosNaEquipa(e), tamanhoEquipa(e) - quantosArqueologosExpulsosNaEquipa(e));
+                        /*if (equipaEstaEmJogoTerreno()) {
                             printf("%s: %d pts; %d descl.; %d com lic.\n");
-                        }
+                        }*/
                     }
                     //classificaEquipasTerreno(t);
                       

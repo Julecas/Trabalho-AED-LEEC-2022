@@ -175,7 +175,7 @@ Parametros:
 Retorno: (int) número de equipas em jogo
 Pre-condicoes: t != NULL
 ***********************************************/
-int quantasEquipaEmJogoNoTerreno(terreno t);
+int quantasEquipasEmJogoNoTerreno(terreno t);
 /***********************************************
 existeArqueologoNaEquipaTerreno - verifica se existe um dado arqueologo numa dada equipa.
 Parametros:
@@ -196,5 +196,13 @@ Retorno: (void)
 Pre-condicoes: t != NULL , nome_equipa tem que existir no DicOrdnado, nome_arqueologo não pode existir na lista de arqueologos(ser repetido)  
 ***********************************************/
 void adicionarReforcoEquipaTerreno(terreno t,char* nome_equipa, char* nome_arqueologo);
+/***********************************************
+obterERemoverDoDicMelhorEquipaNoTerreno - verifica qual a melhor equipa no concurso, removendo-a do dicionário por nome e retornando-a.
+Parametros:
+	t - terreno a consultar
+Retorno: (void)
+Pre-condicoes: t != NULL , nome_equipa tem que existir no DicOrdnado, nome_arqueologo não pode existir na lista de arqueologos(ser repetido)  
+***********************************************/
+void * obterERemoverDoDicMelhorEquipaNoTerreno(terreno t);
 
 #endif /* TERRENO_H_ */

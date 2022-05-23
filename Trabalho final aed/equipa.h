@@ -125,5 +125,29 @@ Retorno: (int) retorna 1 se existir, 0 caso contrario
 Pré-condições: e != NULL
 ***********************************************/
 int existeArqueologoNaEquipa(equipa e,char* nome_arqueologo);
+/***********************************************
+totalPontosEquipa - retorna os pontos totais de uma dada equipa.
+Parâmetros:
+	e - equipa
+Retorno: (int) pontos totais da equipa
+Pré-condições: e != NULL
+***********************************************/
+int totalPontosEquipa(equipa e);
+/***********************************************
+tamanhoEquipa - retorna o tamanho de uma equipa, independentemente se estão expulsos ou não.
+Parâmetros:
+	e - equipa
+Retorno: (int) número de membros de uma equipa
+Pré-condições: e != NULL
+***********************************************/
+int tamanhoEquipa (equipa e);
+/***********************************************
+quantosArqueologosExpulsosNaEquipa - retorna quantos arqueologos estao expulsos na equipa.
+Parâmetros:
+	e - equipa
+Retorno: (int) número de membros expulsos de uma equipa
+Pré-condições: e != NULL
+***********************************************/
+int quantosArqueologosExpulsosNaEquipa(equipa e);
 
 #endif /* EQUIPA_H_ */
