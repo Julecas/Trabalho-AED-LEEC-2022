@@ -106,5 +106,24 @@ Retorno: void
 Pré-condições: e != NULL
 ***********************************************/
 void darPontosArqueologoEquipa(equipa e, int pontos);
+/***********************************************
+verificarExpulsaoEquipa - verificar se resta algum arqueologo de uma dada equipa em jogo. Caso todos os arqueologos estejam sem licença, expulsa também a equipa.
+Parâmetros:
+	e - equipa para adicionar
+	pontos - número de pontos
+Retorno: void
+Pré-condições: e != NULL
+***********************************************/
+void verificarExpulsaoEquipa(equipa e);
+/***********************************************
+existeArqueologoNaEquipa - verifica se um dado arqueologo já existe na equipa.
+Parâmetros:
+	e - equipa para adicionar
+	nome_arqueologo - nome do arqueologo a verificar
+	
+Retorno: (int) retorna 1 se existir, 0 caso contrario
+Pré-condições: e != NULL
+***********************************************/
+int existeArqueologoNaEquipa(equipa e,char* nome_arqueologo);
 
 #endif /* EQUIPA_H_ */

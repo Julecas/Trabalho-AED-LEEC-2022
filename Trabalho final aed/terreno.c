@@ -16,7 +16,7 @@
 struct _terreno {
     int colunas;
     int linhas;
-    talhao ** talhoes;      
+    talhao ** talhoes; 
     dicOrdenado equipasPorNum;
     dicOrdenado equipasPorNom;
    
@@ -55,10 +55,11 @@ void destroiTerreno(terreno t){
     for (i = 0; i < t->linhas ; i++) {
        free(t->talhoes[i]);
     }
-
     free(t->talhoes);
+
+    
     destroiDicOrdEElems(t->equipasPorNum,destroiEquipaGen);
-    destroiDicOrdEElems(t->equipasPorNom,destroiEquipaGen);
+    destroiDicOrdenado(t->equipasPorNom); 
     free(t);
     return;
 
@@ -104,7 +105,7 @@ void adicionaAoOutroDicionarioTerreno(int nEquipa,terreno t) {
     adicionaElemDicOrdenado(t->equipasPorNom,nomeEquipa(elementoDicOrdenado(t->equipasPorNum,&nEquipa)),elementoDicOrdenado(t->equipasPorNum,&nEquipa));
     // 
 }
-void imprimeEquipasTerreno(terreno t){
+void classificaEquipasTerreno(terreno t){ /*alterar funcao*/
     
     iterador it = iteradorDicOrdenado(t->equipasPorNom);
     equipa e;
@@ -155,7 +156,7 @@ int existeAlgumaEquipaEmJogoNoTerreno(terreno t) {
 }
 
 void escavarTerreno(terreno t, char* nome_equipa, int saltoL,int saltoC){
-    equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa); 
+    equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa);
     int posC, posL;
 
     if(!escavarTerrenoEquipa(e, saltoL,saltoC, t->linhas, t->colunas)) {
@@ -164,6 +165,9 @@ void escavarTerreno(terreno t, char* nome_equipa, int saltoL,int saltoC){
         posL = posLinhaEquipa(e);
         darPontosArqueologoEquipa(e, escavarTalhao(t->talhoes[posL][posC]));
     }
+    else {
+        verificarExpulsaoEquipa(e);
+    }
 }
 /*equipa procuraEquipa(terreno t,char* nome_equipa){
     equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa);
@@ -171,4 +175,33 @@ void escavarTerreno(terreno t, char* nome_equipa, int saltoL,int saltoC){
 }*/
 char* procuraEstrelaTerreno(terreno t,char* nome_equipa){
    return procuraEstrela((equipa)elementoDicOrdenado(t->equipasPorNom,nome_equipa));
+}
+
+int quantasEquipaEmJogoNoTerreno(terreno t){
+    iterador it = iteradorDicOrdenado(t->equipasPorNom);
+    equipa e;
+    int count=0;
+	
+    while(temSeguinteIterador(it))
+	{
+		e =	seguinteIterador(it);
+
+        if (!estaExpulsaEquipa(e)) { 
+            count++;
+        }
+	}
+
+    destroiIterador(it);
+	return count;
+}
+int existeArqueologoNaEquipaTerreno (terreno t,char* nome_equipa, char* nome_arqueologo) {
+    equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa);
+    return existeArqueologoNaEquipa(e,nome_arqueologo);
+}
+
+void adicionarReforcoEquipaTerreno(terreno t,char* nome_equipa, char* nome_arqueologo) {
+    adicionaArqueologoEquipa(criaArqueologo(nome_arqueologo), (equipa)elementoDicOrdenado(t->equipasPorNom,nome_equipa));
+}
+int quantasEquipasNoTerreno(terreno t){
+    return tamanhoDicOrdenado(t->equipasPorNom);   
 }

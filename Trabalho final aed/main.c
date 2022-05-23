@@ -26,9 +26,9 @@ int main(void){
 	terreno t = parametrosIniciais();
     lerEquipas(t);
 	interpretador(t);
-    printf("Saiu do interpretador!\n");
+    //printf("Saiu do interpretador!\n");
 	destroiTerreno(t);
-    printf("Destruiu terreno!\n");
+    //printf("Destruiu terreno!\n");
 	return 0;
 }
 
@@ -202,7 +202,19 @@ void interpretador(terreno t){
             fgets(nome_arqueologo, 100, stdin);
             nome_arqueologo[strlen(nome_arqueologo) - 1] = '\0';
 
-            printf("Introduzido reforço com nome %s na equipa %s\n", nome_arqueologo, nome_equipa);
+            if (existeEquipaEmJogoNoTerreno(t, nome_equipa)) {
+                if (!existeArqueologoNaEquipaTerreno(t, nome_equipa, nome_arqueologo)) {
+                    adicionarReforcoEquipaTerreno(t, nome_equipa, nome_arqueologo);
+                }
+                else {
+                    print("Arqueologo invalido\n");
+                }
+            }
+            else {
+                printf("Equipa invalida\n");
+            }
+
+            //printf("Introduzido reforço com nome %s na equipa %s\n", nome_arqueologo, nome_equipa);
         }
         else if(!strcmp("equipa",primeiro_comando)){ // !!! o programa crasha se colocares um valor abaixo de 1, não sei se isso é preocupante ou não 
             /*COMANDO-EQUIPA: o argumento é um inteiro com o número da equipa*/
@@ -222,26 +234,34 @@ void interpretador(terreno t){
             }
         }
         else if(!strcmp("sair",primeiro_comando)){
-            if (existeAlgumaEquipaEmJogoNoTerreno(t)) {
-                if (riquezaTerreno(t)) { 
+            if (existeAlgumaEquipaEmJogoNoTerreno(t)){
+            
+
+                if (riquezaTerreno(t)){  
                     printf("Ainda havia tesouros por descobrir...\n");
-                }
+                }    
                 else {
                     printf("Todos os tesouros foram descobertos!\n");
                 }
+                    printf("classificacao\n");       
+                    
+                    for(int i=0;i <quantasEquipasNoTerreno(t);i++) {
+                        if (equipaEstaEmJogoTerreno()) {
+                            printf("%s: %d pts; %d descl.; %d com lic.\n");
+                        }
+                    }
+                    //classificaEquipasTerreno(t);
+                      
+    
             }
-            else {
-                printf("Todas as equipas foram expulsas.\n");
+            else{
+            printf("Todas as equipas foram expulsas.\n");
             }
-            return;
-        }
-        else if(!strcmp("equipas",primeiro_comando)){ // TIRAR
-            imprimeEquipasTerreno(t); 
+        return;
         }    
         else{
             printf("Comando invalido\n");
         }
     }
 }
-
 

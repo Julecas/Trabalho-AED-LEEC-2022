@@ -41,7 +41,6 @@ equipa criaEquipa(char nome[SIZE]){
 }
 void destroiEquipa(equipa e){
   destroiSeqElems(e->arqueologos,apagaArqueologoGen);
-  //free(e->proximoAEscavar);
   free(e);
 }
 
@@ -126,4 +125,28 @@ int posLinhaEquipa (equipa e) {
 }
 void darPontosArqueologoEquipa (equipa e, int pontos) {
   darPontosArqueologo((arqueologo)elementoPosSequencia(e->arqueologos,e->arqAEscavar - 1), pontos);
+}
+void verificarExpulsaoEquipa(equipa e) {
+    iterador it = iteradorSequencia(e->arqueologos);
+    arqueologo a;
+
+    while (temSeguinteIterador(it)) {
+      a = seguinteIterador(it); 
+      if (!estaExpulsoArqueologo(a)) {
+        return;
+      }
+    }
+    e->expulsao = 1;
+}
+int existeArqueologoNaEquipa(equipa e, char* nome_arqueologo) {
+    iterador it = iteradorSequencia(e->arqueologos);
+    arqueologo a;
+
+    while (temSeguinteIterador(it)) {
+      a = seguinteIterador(it); 
+      if (!strcmp(nomeArqueologo(a), nome_arqueologo)) {
+        return 1;
+      }
+    }
+    return 0;
 }
