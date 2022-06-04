@@ -4,18 +4,18 @@
 
 #include "arqueologo.h"
 
-#define SIZE 40
+#define SIZE_NOME 40
 
 /* TAD simples */
 struct _arqueologo {
     int pontos;
     int nPenalizacoes;
     int expulsao;
-    char nome[SIZE];
+    char nome[SIZE_NOME];
     int i,j;        /*posição i - (linha), j - (coluna) do arqueologo*/ 
 };
 
-arqueologo criaArqueologo(char nome[SIZE]){
+arqueologo criaArqueologo(char nome[SIZE_NOME]){
 	
     arqueologo a = (arqueologo) malloc(sizeof(struct _arqueologo));
 	if (a == NULL) return NULL;

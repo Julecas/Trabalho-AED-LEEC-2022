@@ -170,10 +170,7 @@ void escavarTerreno(terreno t, char* nome_equipa, int saltoL,int saltoC){
         verificarExpulsaoEquipa(e);
     }
 }
-/*equipa procuraEquipa(terreno t,char* nome_equipa){
-    equipa e = elementoDicOrdenado(t->equipasPorNom,nome_equipa);
-    return e;
-}*/
+
 char* procuraEstrelaTerreno(terreno t,char* nome_equipa){
    return procuraEstrela((equipa)elementoDicionario(t->equipasPorNom,nome_equipa));
 }
@@ -242,8 +239,6 @@ void * obterERemoverDoDicMelhorEquipaNoTerreno(terreno t) {
 
     destroiIterador(it);
 
-    //printf("%s: %d pts; %d descl.; %d com lic.\n", nomeEquipa(melhor_equipa), pontosTotaisEquipa(melhor_equipa), tamanhoEquipa(melhor_equipa) - quantosArqueologosEmJogoNaEquipa(melhor_equipa), quantosArqueologosEmJogoNaEquipa(melhor_equipa));
-
 	return removeElemDicionario(t->equipasPorNom, nomeEquipa(melhor_equipa));
 }
 
@@ -259,7 +254,6 @@ while(temSeguinteIterador(it)){
     e = seguinteIterador(it);
     if(!estaExpulsaEquipa(e)){
         vetorEquipas[i]=e;
-        //printf("%s\n", nomeEquipa(vetorEquipas[i]));
         i++;  
     }     
 }
@@ -272,11 +266,7 @@ return vetorEquipas;
 void ordenaEquipas(equipa * vetorEquipas, int nEquipas){
    int i, j, trocou;
    equipa aux;
-
-	//for(j=nEquipas-1; j>=1; j--){
-	//	for(i=0; i<j; i++)
-        
-        
+    
     for (j = 1; j < nEquipas ; j++) {
         trocou = 0;
         for (i = 0; i < nEquipas-1; i++){

@@ -10,6 +10,8 @@
 
 // #define SIZE 15 DEFINIR UM STRING PARA NÃO USAR O 100 NA LINHA, POR EXEMPLO!!!
 #define TAMANHO_INPUT_TESOURO 180
+#define SIZE 100
+#define SIZE_PRIMEIRO_COMANDO 10
 
 /* protótipos das funções usadas no main */
 
@@ -49,9 +51,9 @@ int main(void){
 terreno parametrosIniciais(){
 
 int c,l,i,j;
-char linha[100];
+char linha[SIZE];
 
-fgets(linha, 100, stdin); // Obter input das linhas e colunas do terreno.
+fgets(linha, SIZE, stdin); // Obter input das linhas e colunas do terreno.
 sscanf(linha,"%d %d",&l,&c);
 
 int tesouro[l][c]; // Matriz inicial que irá guardar os valores dos tesouros para os guardar.
@@ -68,8 +70,8 @@ return criaTerreno(l,c,tesouro);
 void lerEquipas(terreno t){
     FILE *fp;
     int nEquipasTotal, n_membros, n_equipa = 1, i, num;
-    char linha[100];
-    char nome_equipa[100];
+    char linha[SIZE];
+    char nome_equipa[SIZE];
 
     fp = fopen("teams.txt", "r");
 
@@ -101,10 +103,10 @@ void lerEquipas(terreno t){
 
 void interpretador(terreno t){
 
-    char primeiro_comando[10], string[100];
+    char primeiro_comando[SIZE_PRIMEIRO_COMANDO], string[SIZE];
     
     while(1){   // Continua no loop até o utilizador usar o comando "sair", que contêm um return.
-        fgets(string, 100, stdin);
+        fgets(string, SIZE, stdin);
         string[strlen(string) - 1] = '\0';
 
         sscanf(string, "%s", primeiro_comando);
@@ -156,8 +158,8 @@ void cmdTerreno(terreno t){
 }
 
 void cmdEstrela(terreno t,char* string){
-char nome_equipa[100];  
-char primeiro_comando[10];  
+char nome_equipa[SIZE];  
+char primeiro_comando[SIZE_PRIMEIRO_COMANDO];  
         
     if(sscanf(string, "%s %[^\n]", primeiro_comando, nome_equipa) == 2){
         if (existeEquipaEmJogoNoTerreno(t, nome_equipa)) {
@@ -170,8 +172,8 @@ char primeiro_comando[10];
 }
 
 void cmdEscavacao(terreno t,char* string){
-char nome_equipa[100];  
-char primeiro_comando[10];
+char nome_equipa[SIZE];  
+char primeiro_comando[SIZE_PRIMEIRO_COMANDO];
 int saltoL, saltoC;
  sscanf(string, "%s %d %d %[^\n]", primeiro_comando, &saltoL, &saltoC, nome_equipa);
 
@@ -195,16 +197,14 @@ int saltoL, saltoC;
 
 void cmdReforco(terreno t){
 //COMANDO-REFORÇO: inicialmente, apenas se escreve "reforco" na primeira linha, escrevendo individualmente cada argumento depois
-char nome_equipa[100]; 
-char nome_arqueologo[100];
+char nome_equipa[SIZE]; 
+char nome_arqueologo[SIZE];
 
-//printf("Introduza a equipa: ");
-fgets(nome_equipa, 100, stdin);
+fgets(nome_equipa, SIZE, stdin);
 nome_equipa[strlen(nome_equipa) - 1] = '\0';
 
 
-//printf("Introduza o arqueologo: ");
-fgets(nome_arqueologo, 100, stdin);
+fgets(nome_arqueologo, SIZE, stdin);
 nome_arqueologo[strlen(nome_arqueologo) - 1] = '\0';
 
 if (existeEquipaEmJogoNoTerreno(t, nome_equipa)) {
@@ -219,16 +219,14 @@ else {
     printf("Equipa invalida\n");
     }
 
-//printf("Introduzido reforço com nome %s na equipa %s\n", nome_arqueologo, nome_equipa);
 }
 
 void cmdEquipa(terreno t,char*string){  
 
-char primeiro_comando[10];
+char primeiro_comando[SIZE_PRIMEIRO_COMANDO];
 int num_equipa;
 
 sscanf(string, "%s %d", primeiro_comando, &num_equipa);
-            //printf("\nAdicionada equipa %d\n", num_equipa);
 
             if (num_equipa <= tamanhoDicOrdenadoPorNumTerreno(t)) {
                 if (!(existeEquipaNoOutroDicTerreno(t, num_equipa))) {

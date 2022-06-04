@@ -209,3 +209,20 @@ int compEquipa(equipa primeira_equipa, equipa segunda_equipa) {
   }
   return 0;
 }
+
+void pontosTotaisEquipa(equipa e){
+ 
+iterador it = iteradorSequencia(e->arqueologos);
+arqueologo a;
+int count=0;
+
+
+  while (temSeguinteIterador(it)) {
+    
+    a = seguinteIterador(it); 
+    count = count + pontosArqueologo(a); //assumi que era os pontos até dos desclassificados
+  }
+
+  e->pontosTotais = count;  
+  return;
+}

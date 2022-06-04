@@ -157,5 +157,13 @@ Retorno: (int) 1 se a primeira equipa for maior classificada 0 caso contrario
 Pré-condições: e != NULL
 ***********************************************/
 int compEquipa(equipa primeira_equipa, equipa segunda_equipa);
+/***********************************************
+pontosTotaisEquipa - soma dos pontos de cada arqueologo da equipa .
+Parâmetros:
+	e - equipa
+Retorno: (int) pontos da equipa
+Pré-condições: e != NULL
+***********************************************/
+void pontosTotaisEquipa(equipa e);
 
 #endif /* EQUIPA_H_ */

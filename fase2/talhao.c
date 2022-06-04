@@ -31,7 +31,7 @@ int estadoTalhao(talhao ta){
 }
 
 int escavarTalhao(talhao ta) {
-    //printf("A escavar talhão com %d de tesouro!\n",ta->tesouro);
+    
     int pontosADar;
     if (ta->tesouro) {
         pontosADar = ta->tesouro;
