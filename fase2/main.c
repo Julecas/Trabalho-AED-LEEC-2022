@@ -198,12 +198,12 @@ void cmdReforco(terreno t){
 char nome_equipa[100]; 
 char nome_arqueologo[100];
 
-printf("Introduza a equipa: ");
+//printf("Introduza a equipa: ");
 fgets(nome_equipa, 100, stdin);
 nome_equipa[strlen(nome_equipa) - 1] = '\0';
 
 
-printf("Introduza o arqueologo: ");
+//printf("Introduza o arqueologo: ");
 fgets(nome_arqueologo, 100, stdin);
 nome_arqueologo[strlen(nome_arqueologo) - 1] = '\0';
 
@@ -265,6 +265,8 @@ if (existeAlgumaEquipaEmJogoNoTerreno(t)){
         
         printf("%s: %d pts; %d descl.; %d com lic.\n", nomeEquipa(vetorEquipas[i]), totalPontosEquipa(vetorEquipas[i]), quantosArqueologosExpulsosNaEquipa(vetorEquipas[i]), tamanhoEquipa(vetorEquipas[i]) - quantosArqueologosExpulsosNaEquipa(vetorEquipas[i]));
     }    
+
+    destruirVetorEquipasTerreno(vetorEquipas);
 }
 else{
     printf("Todas as equipas foram expulsas.\n");

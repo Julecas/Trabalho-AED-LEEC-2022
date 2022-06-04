@@ -259,6 +259,7 @@ while(temSeguinteIterador(it)){
     e = seguinteIterador(it);
     if(!estaExpulsaEquipa(e)){
         vetorEquipas[i]=e;
+        //printf("%s\n", nomeEquipa(vetorEquipas[i]));
         i++;  
     }     
 }
@@ -269,7 +270,7 @@ return vetorEquipas;
 
 }
 void ordenaEquipas(equipa * vetorEquipas, int nEquipas){
-   int i, j;
+   int i, j, trocou;
    equipa aux;
 
 	//for(j=nEquipas-1; j>=1; j--){
@@ -277,12 +278,22 @@ void ordenaEquipas(equipa * vetorEquipas, int nEquipas){
         
         
     for (j = 1; j < nEquipas ; j++) {
+        trocou = 0;
         for (i = 0; i < nEquipas-1; i++){
             if(compEquipa(vetorEquipas[i],vetorEquipas[i+1])){
                 aux=vetorEquipas[i];
                 vetorEquipas[i]=vetorEquipas[i+1];
                 vetorEquipas[i+1]=aux;
+
+                trocou = 1;
             }
         }
+        if (!trocou) { // Se nenhum elemento for trocado num ciclo, a ordenação está completa e pode-se dar break.
+            break;
+        } 
     }
+}
+ 
+void destruirVetorEquipasTerreno (equipa * vetorEquipas) {
+    free(vetorEquipas);
 }

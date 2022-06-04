@@ -224,5 +224,13 @@ Retorno: (void)
 Pre-condicoes: t != NULL 
 ***********************************************/
 void ordenaEquipas(equipa * vetorEquipas, int nEquipas);
+/***********************************************
+destruirVetorEquipasTerreno - destrói o vetor de equipas.
+Parametros:
+	vetorEquipas - vetor estatico de equipas em jogo a ordernar
+Retorno: (void)
+Pre-condicoes: t != NULL 
+***********************************************/
+void destruirVetorEquipasTerreno (equipa * vetorEquipas);
 
 #endif /* TERRENO_H_ */

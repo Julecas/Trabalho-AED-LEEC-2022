@@ -185,18 +185,27 @@ int quantosArqueologosExpulsosNaEquipa (equipa e) {
 
 int compEquipa(equipa primeira_equipa, equipa segunda_equipa) {
   if (totalPontosEquipa(primeira_equipa) > totalPontosEquipa(segunda_equipa)) {
-                return 1;
-            }
+    return 1;
+  }
 
-            if (totalPontosEquipa(primeira_equipa) == totalPontosEquipa(segunda_equipa)) {
-                if (quantosArqueologosExpulsosNaEquipa(primeira_equipa) < quantosArqueologosExpulsosNaEquipa(segunda_equipa)) {
-                    return 1;
-                }
-                if (quantosArqueologosExpulsosNaEquipa(primeira_equipa) == quantosArqueologosExpulsosNaEquipa(segunda_equipa)) {
-                    if(strcmp(nomeEquipa(primeira_equipa),nomeEquipa(segunda_equipa)) < 0) { // usar o compChaves() do chaves.c depois
-                        return 1;
-                    }
-                }
-            }
+  if (totalPontosEquipa(primeira_equipa) == totalPontosEquipa(segunda_equipa)) {
+    if (quantosArqueologosExpulsosNaEquipa(primeira_equipa) < quantosArqueologosExpulsosNaEquipa(segunda_equipa)) {
+      return 1;
+    }
+    if (quantosArqueologosExpulsosNaEquipa(primeira_equipa) == quantosArqueologosExpulsosNaEquipa(segunda_equipa)) {
+      // Ver quem tem menos arqueólogos em jogo
+      if ((tamanhoEquipa(primeira_equipa) - quantosArqueologosExpulsosNaEquipa(primeira_equipa)) < (tamanhoEquipa(segunda_equipa) - quantosArqueologosExpulsosNaEquipa(segunda_equipa))) {
+        return 1;
+      }
+
+      if ((tamanhoEquipa(primeira_equipa) - quantosArqueologosExpulsosNaEquipa(primeira_equipa)) == (tamanhoEquipa(segunda_equipa) - quantosArqueologosExpulsosNaEquipa(segunda_equipa))) {
+
+        if(strcmp(nomeEquipa(primeira_equipa),nomeEquipa(segunda_equipa)) < 0) { // usar o compChaves() do chaves.c depois
+          return 1;
+        }
+      }
+
+    }
+  }
   return 0;
 }
